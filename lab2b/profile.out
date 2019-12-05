@@ -1,0 +1,194 @@
+Total: 99 samples
+      93  93.9%  93.9%       99 100.0% function
+       3   3.0%  97.0%        3   3.0% __strcmp_sse42
+       1   1.0%  98.0%        3   3.0% SortedList_insert
+       1   1.0%  99.0%        3   3.0% SortedList_lookup
+       1   1.0% 100.0%        1   1.0% _init
+       0   0.0% 100.0%       99 100.0% __clone
+       0   0.0% 100.0%       99 100.0% start_thread
+ROUTINE ====================== function in /u/ce/ugrad/nguyenk/cs111/lab2b/lab2_list.c
+    93     99 Total samples (flat / cumulative)
+     .      .   35: 	while(c = *str++)
+     .      .   36:             hash = ((hash << 5) + hash) + c;
+     .      .   37:         return hash;
+     .      .   38: }
+     .      .   39: 
+---
+     .      .   40: void* function(void* arg){
+     .      .   41: 	struct timespec waitStart;
+     .      .   42: 	struct timespec waitEnd;
+     .      .   43: 	int tid = *(int*)arg;
+     .      .   44: 		switch(sOpt)
+     .      .   45: 		{
+     .      .   46: 			case 'm':
+     .      .   47: 			{
+     .      .   48: 				if(clock_gettime(CLOCK_MONOTONIC, &waitStart) == -1)
+     .      .   49: 				{
+     .      .   50:                 			fprintf(stderr, "Error in ending time\n");
+     .      .   51:                 			exit(1);
+     .      .   52:         			}
+     .      .   53: 				pthread_mutex_lock(&pmutex);
+     .      .   54:                                 if(clock_gettime(CLOCK_MONOTONIC, &waitEnd) == -1)
+     .      .   55:                                 {
+     .      .   56:                                         fprintf(stderr, "Error in ending time\n");
+     .      .   57:                                         exit(1);
+     .      .   58:                                 }				
+     .      .   59: 				long time = ((waitEnd.tv_sec - waitStart.tv_sec)*1000000000) + (waitEnd.tv_nsec - waitStart.tv_nsec);
+     .      .   60: 				waitArr[tid] = time;
+     .      .   61: 				break;
+     .      .   62: 			}
+     .      .   63: 			case 's':
+     .      .   64: 			{
+     .      .   65:                                 if(clock_gettime(CLOCK_MONOTONIC, &waitStart) == -1)
+     .      .   66:                                 {
+     .      .   67:                                         fprintf(stderr, "Error in ending time\n");
+     .      .   68:                                         exit(1);
+     .      .   69:                                 }
+    93     93   70: 				while(__sync_lock_test_and_set(&slock,1));
+     .      .   71:                                 if(clock_gettime(CLOCK_MONOTONIC, &waitEnd) == -1)
+     .      .   72:                                 {
+     .      .   73:                                         fprintf(stderr, "Error in ending time\n");
+     .      .   74:                                         exit(1);
+     .      .   75:                                 }
+     .      .   76: 				long time = ((waitEnd.tv_sec - waitStart.tv_sec)*1000000000) + (waitEnd.tv_nsec - waitStart.tv_nsec);
+     .      .   77:                                 waitArr[tid] = time;
+     .      .   78: 				break;
+     .      .   79: 			}
+     .      .   80: 		}
+     .      .   81: 	for(int i = tid; i < numElements; i += numThreads)
+     .      .   82:         {
+     .      3   83: 		SortedList_insert(list[hash(elements[i].key)%numLists], &elements[i]);
+     .      .   84: 	}
+     .      .   85: 	for(int k = 0; k < numLists; k++)
+     .      .   86: 	{
+     .      .   87: 		if(SortedList_length(list[k]) == -1)
+     .      .   88:                 {
+     .      .   89:                 	fprintf(stderr, "Error in list length\n");
+     .      .   90:                         exit(2);
+     .      .   91:                 }				
+     .      .   92: 	}
+     .      .   93: 	for(int i = tid; i < numElements; i += numThreads){
+     .      .   94: 		SortedListElement_t* e;
+     .      3   95: 		e = SortedList_lookup(list[hash(elements[i].key)%numLists],elements[i].key);
+     .      .   96: 		if(e == NULL)
+     .      .   97: 		{
+     .      .   98: 			fprintf(stderr, "Error in lookup\n");
+     .      .   99: 			exit(2);
+     .      .  100: 		}	
+     .      .  101: 		if(SortedList_delete(e))
+     .      .  102: 		{
+     .      .  103: 			fprintf(stderr, "Error in delete\n");
+     .      .  104: 			exit(2);
+     .      .  105: 		}
+     .      .  106: 	}
+     .      .  107: 
+     .      .  108: 	switch(sOpt)
+     .      .  109: 	{
+     .      .  110: 		case 'm':
+     .      .  111: 			pthread_mutex_unlock(&pmutex);			
+     .      .  112: 			break;
+     .      .  113: 		case 's':
+     .      .  114: 			__sync_lock_release(&slock);			
+     .      .  115: 			break;
+     .      .  116: 	}
+     .      .  117: 	return 0;
+     .      .  118: }
+---
+     .      .  119: 
+     .      .  120: int main(int argc, char* argv[])
+     .      .  121: {
+     .      .  122: 	struct timespec start;
+     .      .  123: 	struct timespec end;
+ROUTINE ====================== function in /u/ce/ugrad/nguyenk/cs111/lab2b/lab2_list.c
+    93     99 Total samples (flat / cumulative)
+     .      .   35: 	while(c = *str++)
+     .      .   36:             hash = ((hash << 5) + hash) + c;
+     .      .   37:         return hash;
+     .      .   38: }
+     .      .   39: 
+---
+     .      .   40: void* function(void* arg){
+     .      .   41: 	struct timespec waitStart;
+     .      .   42: 	struct timespec waitEnd;
+     .      .   43: 	int tid = *(int*)arg;
+     .      .   44: 		switch(sOpt)
+     .      .   45: 		{
+     .      .   46: 			case 'm':
+     .      .   47: 			{
+     .      .   48: 				if(clock_gettime(CLOCK_MONOTONIC, &waitStart) == -1)
+     .      .   49: 				{
+     .      .   50:                 			fprintf(stderr, "Error in ending time\n");
+     .      .   51:                 			exit(1);
+     .      .   52:         			}
+     .      .   53: 				pthread_mutex_lock(&pmutex);
+     .      .   54:                                 if(clock_gettime(CLOCK_MONOTONIC, &waitEnd) == -1)
+     .      .   55:                                 {
+     .      .   56:                                         fprintf(stderr, "Error in ending time\n");
+     .      .   57:                                         exit(1);
+     .      .   58:                                 }				
+     .      .   59: 				long time = ((waitEnd.tv_sec - waitStart.tv_sec)*1000000000) + (waitEnd.tv_nsec - waitStart.tv_nsec);
+     .      .   60: 				waitArr[tid] = time;
+     .      .   61: 				break;
+     .      .   62: 			}
+     .      .   63: 			case 's':
+     .      .   64: 			{
+     .      .   65:                                 if(clock_gettime(CLOCK_MONOTONIC, &waitStart) == -1)
+     .      .   66:                                 {
+     .      .   67:                                         fprintf(stderr, "Error in ending time\n");
+     .      .   68:                                         exit(1);
+     .      .   69:                                 }
+    93     93   70: 				while(__sync_lock_test_and_set(&slock,1));
+     .      .   71:                                 if(clock_gettime(CLOCK_MONOTONIC, &waitEnd) == -1)
+     .      .   72:                                 {
+     .      .   73:                                         fprintf(stderr, "Error in ending time\n");
+     .      .   74:                                         exit(1);
+     .      .   75:                                 }
+     .      .   76: 				long time = ((waitEnd.tv_sec - waitStart.tv_sec)*1000000000) + (waitEnd.tv_nsec - waitStart.tv_nsec);
+     .      .   77:                                 waitArr[tid] = time;
+     .      .   78: 				break;
+     .      .   79: 			}
+     .      .   80: 		}
+     .      .   81: 	for(int i = tid; i < numElements; i += numThreads)
+     .      .   82:         {
+     .      3   83: 		SortedList_insert(list[hash(elements[i].key)%numLists], &elements[i]);
+     .      .   84: 	}
+     .      .   85: 	for(int k = 0; k < numLists; k++)
+     .      .   86: 	{
+     .      .   87: 		if(SortedList_length(list[k]) == -1)
+     .      .   88:                 {
+     .      .   89:                 	fprintf(stderr, "Error in list length\n");
+     .      .   90:                         exit(2);
+     .      .   91:                 }				
+     .      .   92: 	}
+     .      .   93: 	for(int i = tid; i < numElements; i += numThreads){
+     .      .   94: 		SortedListElement_t* e;
+     .      3   95: 		e = SortedList_lookup(list[hash(elements[i].key)%numLists],elements[i].key);
+     .      .   96: 		if(e == NULL)
+     .      .   97: 		{
+     .      .   98: 			fprintf(stderr, "Error in lookup\n");
+     .      .   99: 			exit(2);
+     .      .  100: 		}	
+     .      .  101: 		if(SortedList_delete(e))
+     .      .  102: 		{
+     .      .  103: 			fprintf(stderr, "Error in delete\n");
+     .      .  104: 			exit(2);
+     .      .  105: 		}
+     .      .  106: 	}
+     .      .  107: 
+     .      .  108: 	switch(sOpt)
+     .      .  109: 	{
+     .      .  110: 		case 'm':
+     .      .  111: 			pthread_mutex_unlock(&pmutex);			
+     .      .  112: 			break;
+     .      .  113: 		case 's':
+     .      .  114: 			__sync_lock_release(&slock);			
+     .      .  115: 			break;
+     .      .  116: 	}
+     .      .  117: 	return 0;
+     .      .  118: }
+---
+     .      .  119: 
+     .      .  120: int main(int argc, char* argv[])
+     .      .  121: {
+     .      .  122: 	struct timespec start;
+     .      .  123: 	struct timespec end;

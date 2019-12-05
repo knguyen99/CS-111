@@ -1,0 +1,26 @@
+NAME: Khoi Nguyen
+EMAIL: knguyen99@g.ucla.edu
+ID: #########
+
+Files:
+	lab4c_tcp.c: A C source file for an embedded application
+	that tracks temperature from the beaglebone and accepts
+	i/o from an online server through a tcp connection.
+	
+	lab4c_tls.c: This works similar to lab4c_tcp.c except
+	instead of a tcp connection, this application uses a 
+	tls connectionto the online server.
+
+	Makefile: A Makefile that suppports the following targts:
+		default: compiles and builds program executable
+
+		clean: delete all programs and output generated 
+		by the Makefile. 
+
+		dist: create the deliverable tarball.
+	
+	README: Description of files in submitted tarball and serial 
+	number and Wifi MAC Addess of Beaglebone.
+
+SOURCES:
+	TA Slides on CCLE explained most of the process

@@ -1,0 +1,49 @@
+NAME: Khoi Nguyen
+EMAIL: knguyen99@g.ucla.edu
+ID: #########
+
+lab0.c: This file is a C program that copies the standard input 
+to the standard output. There are options such as specfying the 
+input input / output files instead of using the standards. 
+Furthermore there is the option to cause segmentation faults
+by assigning values to null pointers.
+
+Makefile: The Makefile builds the lab0 executable. The Makefile
+supports a default build target, a check target that runs a 
+quick smoke test for errors, a clean target that cleans all files
+created by the Makefile, and a dist target to create the tarball
+to be turned it. 
+
+The tests in the smoke test:
+	iotest: checks if the correct exit code is given when 
+	specifying input and output options
+	
+	segtest: checks if the correct exit code is given when 
+	turning on the --segfault option.
+	
+	dumptest: checks if the correct exit code is given when 
+	turning on --catch --dump-core options (which should 
+	clear out the --catch option).
+	
+	cattest: checks if the correct exit code is given when
+	turning on --catch and --dump-core --catch. Both these 
+	options should give the same exit code 4.
+
+	badargtest: checks if the correct exit code is given 
+	when an invalid option is entered.
+	
+	baditest: checks if the correct exit code is given when
+	the input file specified is not allowed to be read.
+	
+	badotest: checks if the correct exit code is given when
+	the output file specified is not allowed to be written.
+
+The exit codes I followed were from Piazza, NOT from the class
+website.
+
+backtrace.png: This is a screen shot of running the executable
+with --segfault option in gdb and getting a stack backtrace.
+
+breakpoint.png: This is a screen shot of running the executable
+with --segfault option in gdb and looking into the variable that
+causes the segmentation fault.

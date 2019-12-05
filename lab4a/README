@@ -1,0 +1,28 @@
+NAME: Khoi Nguyen
+EMAIL: knguyen99@g.ucla.edu
+ID: #########
+
+Files:
+	my_beaglebone.jpg: Image of me with assembled Beaglebone.
+	
+	connected.png: Screenshot of USB terminal command session 
+	connected to my system, showing given name and configured
+	network access.
+	
+	copy.png: Screenshot of a session copying Hello World from
+	my laptop to Beaglebone.
+
+	build_run.png: Screenshot of Wifi SSH session building and 
+	running trivial	Hello World program.
+
+	git.png: Screenshot of Wifi SSH session intalling git and 
+	cloning repository.
+
+	Makefile: Builds the tarball for lab4a with required files
+	
+	README: Description of files in submitted tarball and serial 
+	number and Wifi MAC Addess of Beaglebone.
+
+
+Beaglebone Serial Number: BBGW18040006
+Wifi MAC Address: 2CF7F1068F05

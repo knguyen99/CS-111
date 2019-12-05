@@ -1,0 +1,27 @@
+NAME: Khoi Nguyen
+EMAIL: knguyen99@g.ucla.edu
+ID: #########
+
+simpsh.c: 
+	This is a c program that acts as a stripped down, simple shell. It does not
+	use scripting language nor interact with it at terminal. In this first part
+	only --rdonly --wronly --verbose and --command options have been implemented.
+
+Makefile:
+	The makefile supports the following targets: 
+	default:
+	clean: 
+	dist:
+	test:
+References:
+	For getopt:
+	https://www.gnu.org/software/libc/manual/html_node/Getopt-Long-Option-Example.html
+	https://www.gnu.org/software/libc/manual/html_node/Using-Getopt.html
+	
+	For execvp:
+	https://linux.die.net/man/3/execvp
+	
+	For sigaction:
+	https://www.gnu.org/software/libc/manual/html_node/Sigaction-Function-Example.html
+	http://man7.org/linux/man-pages/man2/sigaction.2.html
+	

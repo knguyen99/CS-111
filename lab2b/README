@@ -1,0 +1,60 @@
+NAME: Khoi Nguyen
+EMAIL: knguyen99@g.ucla.edu
+ID: #########
+
+Files:
+	lab2_add.c: a C program that implements and tests a shared variable add function, 
+	implements specified command line options, and produces specified output statistics.
+
+	lab2_list.c: a Cprogrma that implements and tests a shared Sorted liknked list,
+	implements specified command line options, and produces specified output statistics.
+
+	SortedList.h:: a header file (supplied) describing the interfaces for linked 
+	list operations.
+	
+	SortedList.c: implementation of header file, includes insert, delete, lookup and 
+	length functions
+	
+
+Questions:
+
+	2.3.1) I believe that most of the time for 1 and 2 threads is spent on the actual operations
+	on the lists. For 1 and 2 threads, since there are either no or 1 other thread competing
+	for locks, the time it takes to acquire the lock is much smaller than doing actual operations
+	on the list. These are most expensive because, without waiting for locks, the CPU time is spent
+	mostly doing actual work on the list. In high thread spin locks, I believe that most time is 
+	spent on waiting on the spin locks, since threads are not blocked while waiting for a spin lock.
+	In high thread mutex locks, I believe that most time is spent doing context switches. There are 
+	more context switches in higher thread mutex locks since more threads need to do more operations.
+
+	2.3.2) From profile.out, most time is spent in the while loop of the spin lock. In the while lock
+	the function constantly polls to figure if the resources are available for the thread to use. This 
+	is located in my function named function. This becomes increasingly expensive with more threads
+	because this means that more threads are constantly running their while loops to check for resource
+	availability.
+
+	2.3.3) Average lock time increases dramatically with increasing threads because with more threads
+	competing with each other, each of them have to wait for the resource to be available, thus there
+	is higher competition. The completion time per operation rises less dramatically because there are
+	still a lot of threads that need to complete a lot operations, thus there is still context switches
+	that that increase total time with more threads. It does not increase as dramatically because the 
+	overall time does not account for wait times, and since waiting for a mutex lock does not use CPU time
+	the overall time does not increase as much. It is possible for wait time to go up higher than completion
+	time if there are a lot of threads competing for each other, thus the wait time increases since the
+	wait time is a sum of how long each thread has waited. With more waiting and a lot of threads, this
+	value adds to be very high.
+	
+	2.3.4) As number of lists increase, the amount of operations per second increases. This is because
+	with more lists, it is faster to insert, search, and delete since the sublists are shorter than
+	what a single list would be. The throughput will continue to increase until the point where there
+	are so many sublists with very small amount of elements such that the list operations will have no
+	benefit, thus will level off to a value. It does not appear that a throughput of a
+	N-way partioned list is equivalent to fewer than 1/N threads. This is because with the N-way list,
+	throughput is based on time of operations, and since N-way partitioned lists have faster operation
+	times (since the lists are shorter), time spent waiting is decreased and the throughput is higher 
+	for N-way partioned lists than a single list with 1/N threads. From the graph you can see that a 16 
+	partioned graph has a highert hroughput than what a 1 list would be if you could have 1/16 threads. 
+
+
+Source:
+	Djb2 hash function: http://www.cse.yorku.ca/~oz/hash.html

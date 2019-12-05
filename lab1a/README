@@ -1,0 +1,35 @@
+NAME: Khoi Nguyen
+EMAIL: knguyen99@g.ucla.edu
+ID: #########
+
+simpsh.c: 
+	This is a c program that acts as a stripped down, simple shell. It does not
+	use scripting language nor interact with it at terminal. In this first part
+	only --rdonly --wronly --verbose and --command options have been implemented.
+
+Makefile:
+	The makefile supports the following targets: 
+	default:
+		Compiles and builds the program to use.
+	clean: 
+		Removes the program and all temporary files created from the default.
+	dist:
+		Creates the tarball for submission
+	test:
+		Three different tests I have created to ensure correction
+		
+		test 1: this test that the files I created were able to be accessed with
+		the right flags. My program exited with 0, which it should have.
+		
+		test 2: this test that the files I created were able to be accessed 
+		correctly, and that --command could be used correctly with the cat command.
+		
+		test 3: this test made sure that the right statement was printed when the
+		verbose option was enabled.
+References:
+	For getopt:
+	https://www.gnu.org/software/libc/manual/html_node/Getopt-Long-Option-Example.html
+	https://www.gnu.org/software/libc/manual/html_node/Using-Getopt.html
+	
+	For execvp:
+	https://linux.die.net/man/3/execvp

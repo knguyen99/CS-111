@@ -1,0 +1,17 @@
+NAME: Khoi Nguyen
+EMAIL: knguyen99@g.ucla.edu
+ID: #########
+
+Files:
+	lab3b.py:  program to analyze a file system summary (a .csv file in 
+	the same format produced for the previous file system project) and 
+	report on all discovered inconsistencies.
+
+	Makefile: builds and runs the deliverable program. Supports default,
+	dist (to make tarball), and clean (to remove created fles) targests.
+	
+	README: Descriptions of tarball contents.
+
+Sources:
+	For CSV help in Python:
+		https://docs.python.org/2/library/csv.html

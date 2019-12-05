@@ -1,0 +1,32 @@
+NAME: Khoi Nguyen
+EMAIL: knguyen99@g.ucla.edu
+ID: #########
+
+Files:
+	lab4b.c: C source file for an embedded application that 
+	builds and runs on an embedded system. This program samples
+	a temperature sensor at a configurable rate, converts the 
+	temperatures with to a specific option, creates a report 
+	of the temperatures, and appends report to a logfile. The 
+	application also logs button state and shuts down when 
+	button is pressed.
+
+	Makefile: A Makefile that suppports the following targts:
+		default: compiles and builds program executable
+
+		check: execute an automated smoke-test of your 
+		application to see if it runs and can talk to 
+		its sensors.
+
+		clean: delete all programs and output generated 
+		by the Makefile. 
+
+		dist: create the deliverable tarball.
+	
+	README: Description of files in submitted tarball and serial 
+	number and Wifi MAC Addess of Beaglebone.
+
+NOTE: Makefile is intended to be run on the embedded system.
+
+SOURCES:
+	Temperature reading: http://wiki.seeedstudio.com/Grove-Temperature_Sensor_V1.2/

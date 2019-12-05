@@ -1,0 +1,8 @@
+total 40
+drwxr-xr-x 3 nguyenk ceugrad  4096 Jan 31 02:19 .
+drwxr-xr-x 3 nguyenk ceugrad  4096 Jan 31 02:19 ..
+-rw-r--r-- 1 nguyenk ceugrad  3726 Jan 31 02:19 lab1-804993073.tar.gz
+drwxr-xr-x 2 nguyenk ceugrad  4096 Jan 31 02:19 lab1breadergradingtempdir
+-rw-r--r-- 1 nguyenk ceugrad  1381 Jan 31 02:02 Makefile
+-rw-r--r-- 1 nguyenk ceugrad   785 Jan 31 02:14 README
+-rwxr-xr-x 1 nguyenk ceugrad 13178 Jan 31 02:18 simpsh.c

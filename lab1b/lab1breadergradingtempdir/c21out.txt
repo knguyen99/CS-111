@@ -1,0 +1,6 @@
+--command 0 0 0 sleep 4 
+--wait
+exit 0 sleep 4 
+--creat
+--rdwr test21io2.txt
+--command 1 1 1 sleep 5 

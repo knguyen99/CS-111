@@ -1,0 +1,17 @@
+NAME: Khoi Nguyen
+EMAIL: knguyen99@g.ucla.edu
+ID: #########
+
+Files:
+	lab3a.c: Program that reads and analyzes a file system image and
+	produces CSV entries for superblock summaries, group summaries, 
+	free block entries, free inode entries, inode summaries, directory
+	entries, and indirect block references.
+		
+	ext2_fs.h: Header file that declares needed structs to read ext2 files.
+	
+	Makefile: builds and runs the deliverable program. Supports default,
+	dist (to make tarball), and clean (to remove created fles) targests.
+	
+	README: Descriptions of tarball contents.
+
