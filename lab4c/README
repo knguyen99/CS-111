@@ -9,7 +9,7 @@ Files:
 	
 	lab4c_tls.c: This works similar to lab4c_tcp.c except
 	instead of a tcp connection, this application uses a 
-	tls connectionto the online server.
+	tls connection to the online server.
 
 	Makefile: A Makefile that suppports the following targts:
 		default: compiles and builds program executable
